@@ -4,7 +4,7 @@
     <style>
  #map {
         width: 100%;
-        height: 700px;
+        height: 600px;
      }
     </style>
   </head>
@@ -20,6 +20,9 @@
           ['Parkgarage Urania<br>Occupancy: 12/607. Price: $4.4 CHF/1h', 47.3742252, 8.5406541, 2],
           ['Parkgarage Central<br>Occupancy: 35/40. Price: $4 CHF/1h', 47.375361, 8.545436, 1]
         ];
+
+        var off_parking = new google.maps.MarkerImage("./res/off.png", null, null, null, new google.maps.Size(38, 38));
+        var garage_parking = new google.maps.MarkerImage("./res/in.jpg", null, null, null, new google.maps.Size(32, 42));
 
         var center = {lat: 47.3775254, lng: 8.5409229};
 
@@ -47,7 +50,7 @@
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
             map: map,
-            icon:'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png'
+            icon: (i < 3) ? off_parking : garage_parking
           });
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
